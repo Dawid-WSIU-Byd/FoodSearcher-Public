@@ -1,0 +1,11 @@
+<!-- Ingredient search logic -->
+<input type="text" id="ingredientInput" style="margin:5px;" autocomplete="off" class="form-control" rows="1"
+       onkeyup="searchIngredients()" placeholder="What ingredient are you looking for?">
+<form class="form-inline">
+    <button class="btn btn-primary my-2 my-sm-0" style="margin:5px;" onClick="clearSelections(); return false;"><i
+            class="far fa-trash-alt"></i> Clear selection
+    </button>
+    <button class="btn btn-primary my-2 my-sm-0" type="submit" form="sendRecipe" formmethod="post"><i
+            class="fas fa-search"></i> Search recipes
+    </button>
+</form>

@@ -1,0 +1,42 @@
+<div class="bs-component">
+    <!-- Steps navigation -->
+    <ul class="nav nav-tabs">
+        {% for tab in JSON_Instruction %}
+        <li class="nav-item">
+            <a class="nav-link{% if not tab.name %} active{% endif %}" data-toggle="tab"
+               href="#steps{{forloop.counter}}">
+                {% if tab.name %}
+                    {{tab.name}}
+                {% else %}
+                    {{JSON_Information.title}}
+                {% endif %}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    <!-- Steps display -->
+    <div class="tab-content" id="stepsTab">
+        {% for tab in JSON_Instruction %}
+        <div class="tab-pane fade{% if not tab.name %} show active{% endif %}" id="steps{{forloop.counter}}">
+            {% for steps in tab.steps %}
+            <div class="card text-white bg-primary">
+                <div class="card-header"><b>Step #{{steps.number}}</b></div>
+                <div class="card-body">
+                    <p class="card-text">
+                        {% if steps.equipment %}
+                            <i class="fas fa-blender"></i>{% for eq in steps.equipment %}<span class="badge badge-light" style="margin:2px;">{{eq.name}}</span>{% endfor %}
+                            <br>
+                        {% endif %}
+                        {% if steps.ingredients %}
+                            <i class="fas fa-carrot"></i>{% for ing in steps.ingredients %}<span class="badge badge-light" style="margin:2px;">{{ing.name}}</span>{% endfor %}
+                            <br>
+                        {% endif %}
+                        {{steps.step}}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</div>

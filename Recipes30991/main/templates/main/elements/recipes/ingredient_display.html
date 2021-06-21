@@ -1,0 +1,9 @@
+<!-- Ingredient display -->
+<div class="bs-component">
+    <span class="text-primary"><i class="fas fa-carrot"></i></span>
+    {% if Ingredients %}
+        {% for ing in Ingredients %}<span class="badge badge-primary" style="margin:2px;">{{ing}}</span>{% endfor %}
+    {% else %}
+        <span class="badge badge-light">N/A</span>
+    {% endif %}
+</div>

@@ -1,0 +1,24 @@
+<!-- "Uh oh!" error element -->
+<div class="bs-component">
+    <div class="card border-danger">
+        <div class="card-body">
+            <center>
+                <p><h1>
+                    <i class="far fa-sad-tear"></i><br>
+                    {% if header %}
+                        {{header}}
+                    {% else %}
+                        Uh oh! A problem!
+                    {% endif %}
+                </h1></p>
+                <p>
+                    {% if message %}
+                        {% if code %}[Spoonacular] {{code}}: {% endif %}{{message}}
+                    {% else %}
+                        Something happened on our side. We're so sorry for any inconvenience!
+                    {% endif %}
+                </p>
+            </center>
+        </div>
+    </div>
+</div>

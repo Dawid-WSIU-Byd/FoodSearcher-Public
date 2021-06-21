@@ -1,0 +1,32 @@
+{% load static %}
+
+<!-- Checkbox list updater.
+If there's 0 ingredients, there's no need for scripts. -->
+<script src="{% static 'javascript/searchIngredients.js' %}"></script>
+<table class="table table-hover">
+    <thead>
+        <tr class="table-primary">
+            <td style="width:10%"></td>
+            <th style="width:90%" scope="col">Ingredient</th>
+        </tr>
+    </thead>
+
+    <div class="overflow-auto">
+        <tbody id="ingredientList">
+            <form id="sendRecipe" action="/recipes/" method="post">
+                {% csrf_token %}
+                {% for ingredient in IngredientList %}
+                    <tr id="{{ingredient.IngredientName}}" >
+                        <td style="width:10%"><input type="checkbox"
+                                                     id="cb_{{ingredient.IngredientId}}" name="ingredientCheckbox"
+                                                     value="{{ingredient.IngredientName}}" onclick="updateSelectList()"></td>
+                        <td style="width:90%"><label for="cb_{{ingredient.IngredientId}}">{{ingredient.IngredientName}}</label></td>
+                    </tr>
+                {% endfor %}
+            </form>
+        </tbody>
+    </div>
+</table>
+<!-- Ingredients get added later (with Django).
+Calling this function earlier will not give any effects. -->
+<script>searchIngredients(); updateSelectList();</script>

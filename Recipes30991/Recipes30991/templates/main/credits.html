@@ -1,0 +1,55 @@
+{% extends './navbar.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Credits</h1>
+
+<div class="jumbotron">
+	<div class="media">
+		<a href="https://spoonacular.com/food-api">
+			<img alt="Spoonacular" class="mr-3" src="{% static 'imgs/spoonacular.png' %}" height="100%" width="100%">
+		</a>
+		<div class="text-right col-md-8">
+			<h1>Spoonacular API</h1>
+			<p>
+				Spoonacular is a food management system which tries to combine search engine, meat planner and shopping companion functionalities.
+				It's API is used in FoodSearcher for ingredient search and displaying many recipes!
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="jumbotron text-right">
+	<div class="media">
+		<div class="text-left col-md-8">
+			<h1>"Minty" Bootstrap theme</h1>
+			<p>
+				Bootswatch is a site which distributes many Bootstrap themes on a MIT license.
+				The site was made by Thomas Park.
+			</p>
+		</div>
+		<a href="https://bootswatch.com/">
+			<img alt="Bootswatch" class="mr-3" src="{% static 'imgs/bootswatch.png' %}" height="100%" width="100%">
+		</a>
+	</div>
+</div>
+
+<div class="jumbotron">
+	<div class="media">
+		<a href="https://fontawesome.com/">
+			<img alt="FontAwesome" class="mr-3" src="{% static 'imgs/fontawesome.png' %}" height="100%" width="100%">
+		</a>
+		<div class="text-right col-md-8">
+			<h1>FontAwesome icons</h1>
+			<p>
+				FontAwesome distributes many icons for web apps and websites!
+				Without them, this site would be very bland.
+			</p>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% load static %}

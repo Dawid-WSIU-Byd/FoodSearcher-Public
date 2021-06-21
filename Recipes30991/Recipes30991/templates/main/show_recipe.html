@@ -1,0 +1,36 @@
+{% extends './navbar.html' %}
+{% load static %}
+{% block content %}
+
+<h1>About recipe</h1>
+
+{% if JSON_Information and not JSON_Information.status %}
+
+    <div class="row">
+        <div class="col">
+            {% include './elements/show_recipe/recipe_card.html' with JSON_Information=JSON_Information %}
+            <br>
+        </div>
+        <!-- Recipe steps -->
+        <div class="col">
+            {% if JSON_Instruction %}
+                {% include './elements/show_recipe/recipe_steps.html' with JSON_Instruction=JSON_Instruction %}
+            {% else %}
+                {% include './elements/uh_oh.html' with header='No recipe steps were found!' message="We weren't able to retrieve the information. Perhaps you should check the source?" %}
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Nutrition -->
+    {% if JSON_Information.nutrition %}
+        {% include './elements/show_recipe/nutrition.html' with nutrition=JSON_Information.nutrition %}
+    {% endif %}
+
+    <!-- Comments -->
+    {% include './elements/show_recipe/comments.html' with Comments=Comments NewComment=NewComment CForm=CForm CommentPost=CommentPost %}
+
+{% else %}
+    {% include './elements/uh_oh.html' with code=JSON_Information.code message=JSON_Information.message %}
+{% endif %}
+
+{% endblock %}

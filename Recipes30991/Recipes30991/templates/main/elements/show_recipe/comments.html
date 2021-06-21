@@ -1,0 +1,53 @@
+<h1>Comment section</h1>
+
+<div class="container">
+    <!-- Post comment -->
+    <div class="card text-white bg-primary">
+        <div class="card-header"><b>Post</b></div>
+        <div class="card-body">
+            {% if NewComment %}
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <h4 class="alert-heading">Comment sent!</h4>
+                    <p class="mb-0">Your comment is now awaiting moderation.</p>
+                </div>
+            {% endif %}
+            <form method="post">
+                <label for="{{CForm.Username.id_for_label}}"><b>Username</b></label>
+                <input class="form-control" id="{{CForm.Username.id_for_label}}" name="{{CForm.Username.html_name}}"
+                          placeholder="OnlyTwentyCharacters" rows="1" maxlength="20" required="">
+                <label for="{{CForm.Mail.id_for_label}}"><b>E-mail</b></label>
+                <input type="email" class="form-control" id="{{CForm.Mail.id_for_label}}" name="{{CForm.Mail.html_name}}"
+                       aria-describedby="emailHelp" placeholder="mail@example.com" rows="1" maxlength="254" required="">
+                <label for="{{CForm.Text.id_for_label}}"><b>Comment</b></label>
+                <textarea class="form-control" id="{{CForm.Text.id_for_label}}" name="{{CForm.Text.html_name}}"
+                          placeholder="Say something about this recipe!" rows="3" maxlength="280" required=""></textarea>
+                {% if NewComment %}
+                <br>
+                <button type="submit" class="btn btn-secondary float-right disabled" disabled>Submitted</button>
+                {% else %}
+                {% csrf_token %}
+                <br>
+                <button type="submit" class="btn btn-secondary float-right">Submit</button>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+    <br>
+
+    <!-- Comment list -->
+    <div class="card text-white bg-primary">
+        <div class="card-header"><b>Comments</b> ({{Comments.count}})</div>
+        <div class="card-body">
+            {% for comment in Comments %}
+            <div class="comments" style="padding: 5px;">
+                <b>{{comment.Username}}</b> <span class="badge badge-light">{{comment.PostedOn|date:"M d, Y"}}</span>
+                <br>
+                {{comment.Text|linebreaks}}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <br>
+
+</div>

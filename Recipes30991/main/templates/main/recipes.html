@@ -1,0 +1,24 @@
+{% extends './navbar.html' %}
+{% load static %}
+{% block content %}
+
+	<h1>Recipes</h1>
+
+	{% include './elements/api_reminder.html' %}
+	{% include './elements/recipes/ingredient_display.html' with Ingredients=Ingredients %}
+
+	{% if JSON and not JSON.status %}
+
+		{% if RecipeAmount > 0 %}
+			<p>We were able to find <b>{{RecipeAmount}} recipe{{RecipeAmount|pluralize}}</b>!</p>
+			{% include './elements/recipes/recipe_display.html' with JSON=JSON %}
+		{% else %}
+			{% include './elements/uh_oh.html' with header="There's nothing!" message="Looks like there's no recipes for those ingredients or the response took too long." %}
+		{% endif %}
+
+	{% else %}
+		{% include './elements/uh_oh.html' with code=JSON.code message=JSON.message %}
+	{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% load humanize %}
+
+<!-- Recipe card: information -->
+<div class="card">
+    <h3 class="card-header">{{JSON_Information.title}}</h3>
+    <img alt="RecipeImageGoesHere" height="100%"
+         src="https://spoonacular.com/recipeImages/{{JSON_Information.id}}-636x393.{{JSON_Information.imageType}}"
+         width="100%">
+    <div class="card-body">
+        <i class="fas fa-at"></i> <a href="{{JSON_Information.sourceUrl}}" target="_blank">{% if JSON_Information.license %} {{JSON_Information.sourceName}}{% else %}<span class="text-danger"> No name provided</span>{% endif %}</a>
+        {% if JSON_Information.license %}<small>({{JSON_Information.license}})</small>{% endif %}
+        <br>
+        <i class="far fa-clock"></i>&nbsp;{{JSON_Information.readyInMinutes}} min<br>
+        <i class="fas fa-utensils"></i>&nbsp;{{JSON_Information.servings}} servings<br>
+        <i class="fas fa-shopping-cart"></i> <span
+            class="{% if JSON_Information.cheap %}text-success{% endif %}">${{JSON_Information.pricePerServing}}</span><small>
+        /serving</small><br>
+        <!-- OLD LIKES
+        <i class="far fa-thumbs-up"></i>&nbsp;{{JSON_Information.aggregateLikes}} Spoonacular like{{JSON_Information.aggregateLikes|pluralize}}<br>
+        -->
+        <i class="far fa-thumbs-up"></i>&nbsp;{{Likes}} FoodSearcher like{{Likes|pluralize}}<br>
+        <!-- Diet info -->
+        <i class="fas fa-info"></i>
+            {% if JSON_Information.veryHealthy %}<span class="badge badge-primary">very healthy</span>{% endif %}
+            {% if JSON_Information.vegan %}<span class="badge badge-primary">vegan diet</span>
+            {% elif JSON_Information.vegetarian %}<span class="badge badge-primary">vegetarian diet</span>{% endif %}
+            {% if JSON_Information.dairyFree %}<span class="badge badge-primary">dairy free</span>{% endif %}
+            {% if JSON_Information.glutenFree %}<span class="badge badge-primary">gluten free</span>{% endif %}
+            {% if JSON_Information.ketogenic %}<span class="badge badge-primary">ketogenic diet</span>{% endif %}
+            {% if JSON_Information.lowFodmap %}<span class="badge badge-primary">low FODMAP diet</span>{% endif %}
+            {% if JSON_Information.gaps %}<span class="badge badge-primary">GAPS diet</span>{% endif %}
+            {% if JSON_Information.whole30 %}<span class="badge badge-primary">Whole30 diet</span>{% endif %}
+        <br>
+        <form method="get" class="text-right">
+            {% if not Liked %}
+            <button name="like" type="submit" class="btn btn-success" value=true><i class="far fa-thumbs-up"></i>&nbsp;Like</button>
+            {% else %}
+            <button name="like" type="submit" class="btn btn-danger" value=false><i class="far fa-thumbs-down"></i>&nbsp;Unlike</button>
+            {% endif %}
+        </form>
+    </div>
+</div>
+
+<br>
+
+<!-- Recipe card: ingredients -->
+<div class="card">
+    <h3 class="card-header">Ingredients</h3>
+    <ul class="list-group list-group-flush">
+        {% for ingredient in JSON_Information.extendedIngredients %}
+        <li class="list-group-item"><b>{{ingredient.name}}</b><small>
+            ({{ingredient.measures.metric.amount|floatformat|intcomma}}{% if ingredient.measures.metric.unitShort %}&nbsp;{{ingredient.measures.metric.unitShort}}{% endif %})
+        </small></li>
+        {% endfor %}
+    </ul>
+</div>

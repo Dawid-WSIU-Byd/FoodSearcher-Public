@@ -1,0 +1,49 @@
+{% extends './navbar.html' %}
+{% load static %}
+{% block content %}
+
+<h1>About</h1>
+
+<div class="jumbotron">
+	<h1>What exactly is FoodSearcher?</h1>
+    <p>
+		FoodSearcher is a web application meant to display recipes from provided ingredients.
+		It's very simple in use! All you have to do is to select multiple ingredients from our database.
+		You should receive a list of all the possible recipes.
+	</p>
+</div>
+
+<div class="jumbotron text-right">
+	<h1>How does the search work?</h1>
+    <p>
+		The process is easy to explain.
+		After providing all the ingredients, the app sends a request to receive a list of possible recipes.
+		We sort the list - prioritizing the highest % ratio of owned and required ingredients.
+		Clicking the recipe name opens it's respective page in another tab.
+	</p>
+</div>
+
+<div class="jumbotron">
+	<h1>What information is displayed?</h1>
+    <p>
+		Examples include:
+		<ul>
+			<li>original recipe source - web page and license</li>
+			<li>preparation time - minutes total</li>
+			<li>cost - value in USD, text glows green when it's cheap</li>
+			<li>nutrition facts - list of nutrients, caloric breakdown and weight per serving</li>
+		</ul>
+	</p>
+	<p>This web app also displays equipment and ingredients for every singular step.</p>
+</div>
+
+<div class="jumbotron text-right">
+	<h1>I really liked one recipe. Where can I recommend it?</h1>
+    <p>
+		You can use our comment section to say something about the recipe.
+		There's also a like button for each recipe.
+		You can always unlike the recipe, if it happens to be boring or was liked on accident.
+	</p>
+</div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% load static %}
+<html>
+
+<head>
+    <!-- Config -->
+    <meta charset="utf-8">
+    <title>FoodSearcher{% if Title %}: {{Title}}{% endif %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'custom.min.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+          integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <!-- Libs -->
+    <script src="{% static 'libs/jquery.min.js' %}"></script>
+    <script src="{% static 'libs/bootstrap.bundle.min.js' %}"></script>
+</head>
+
+<!-- FoodSearcher navbar -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">FoodSearcher</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item{% if request.path == '/about/' %} active{% endif %}">
+                <a class="nav-link" href="/about/">About</a>
+            </li>
+            <li class="nav-item{% if request.path == '/credits/' %} active{% endif %}">
+                <a class="nav-link" href="/credits/">Credits</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- FoodSearcher site body -->
+<body>
+    <div class="content container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>
