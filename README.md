@@ -14,6 +14,10 @@ As one of the plans, I have decided to make the source code public, so many othe
 
 ## Requirements
 
+You should install proper Python packages.
+`pip django`
+`pip spoonacular`
+
 You need to create a "secret" folder in the Recipes30991 directory, to make sure the application works properly.
 
 1. Spoonacular API key
